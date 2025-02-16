@@ -9,13 +9,20 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
 
-    private Button buttonLogin, buttonSorteio, buttonPaint, buttonAtividadeA, buttonAtividadeB;
+    private Button buttonLogin, buttonSorteio, buttonPaint, buttonAtividadeA, buttonAtividadeB, buttonUserList;
     private SensorManager sensorManager;
     private Sensor accelerometer;
     private TextView sensorDataText;
+    private RecyclerView recyclerView;
+    private PlanetAdapter planetAdapter;
+    private List<Planet> planetList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,13 +34,17 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         buttonPaint = findViewById(R.id.buttonPaint);
         buttonAtividadeA = findViewById(R.id.buttonAtividadeA);
         buttonAtividadeB = findViewById(R.id.buttonAtividadeB);
+        buttonUserList = findViewById(R.id.buttonUserList);
         sensorDataText = findViewById(R.id.sensorData);
+        recyclerView = findViewById(R.id.recyclerView);
 
+        // Configuração dos eventos de clique
         buttonLogin.setOnClickListener(v -> abrirTela(LoginActivity.class));
         buttonSorteio.setOnClickListener(v -> abrirTela(SorteioActivity.class));
         buttonPaint.setOnClickListener(v -> abrirTela(PaintActivity.class));
         buttonAtividadeA.setOnClickListener(v -> abrirTela(AtividadeA.class));
         buttonAtividadeB.setOnClickListener(v -> abrirTela(AtividadeB.class));
+        buttonUserList.setOnClickListener(v -> abrirTela(UserListActivity.class));
 
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -43,6 +54,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         } else {
             sensorDataText.setText("Acelerômetro não disponível.");
         }
+
+        // Configuração do RecyclerView
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        planetList = getPlanets();
+        planetAdapter = new PlanetAdapter(planetList);
+        recyclerView.setAdapter(planetAdapter);
     }
 
     private void abrirTela(Class<?> activityClass) {
@@ -76,5 +93,18 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         if (accelerometer != null) {
             sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL);
         }
+    }
+
+    private List<Planet> getPlanets() {
+        List<Planet> planets = new ArrayList<>();
+        planets.add(new Planet("Mercúrio", R.drawable.mercurio));
+        planets.add(new Planet("Vênus", R.drawable.venus));
+        planets.add(new Planet("Terra", R.drawable.terra));
+        planets.add(new Planet("Marte", R.drawable.marte));
+        planets.add(new Planet("Júpiter", R.drawable.jupiter));
+        planets.add(new Planet("Saturno", R.drawable.saturno));
+        planets.add(new Planet("Urano", R.drawable.urano));
+        planets.add(new Planet("Netuno", R.drawable.netuno));
+        return planets;
     }
 }

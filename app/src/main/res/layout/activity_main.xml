@@ -67,6 +67,16 @@
         android:textStyle="bold"
         android:layout_marginTop="10dp"/>
 
+    <Button
+        android:id="@+id/buttonUserList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Listagem de Usuários"
+        android:backgroundTint="#009688"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"/>
+
     <TextView
         android:id="@+id/sensorData"
         android:layout_width="wrap_content"
@@ -74,5 +84,12 @@
         android:text="X: 0.00 | Y: 0.00 | Z: 0.00"
         android:textSize="18sp"
         android:textColor="#000000"
+        android:layout_marginTop="20dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:layout_marginTop="20dp"/>
 </LinearLayout>
