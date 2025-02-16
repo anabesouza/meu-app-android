@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         sensorDataText = findViewById(R.id.sensorData);
         recyclerView = findViewById(R.id.recyclerView);
 
-        // Configuração dos eventos de clique
         buttonLogin.setOnClickListener(v -> abrirTela(LoginActivity.class));
         buttonSorteio.setOnClickListener(v -> abrirTela(SorteioActivity.class));
         buttonPaint.setOnClickListener(v -> abrirTela(PaintActivity.class));
@@ -55,7 +54,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             sensorDataText.setText("Acelerômetro não disponível.");
         }
 
-        // Configuração do RecyclerView
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         planetList = getPlanets();
         planetAdapter = new PlanetAdapter(planetList);

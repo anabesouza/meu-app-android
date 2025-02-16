@@ -4,7 +4,6 @@
 
     <uses-permission android:name="android.permission.INTERNET"/>
 
-    <!-- Permissão para o aplicativo ser definido como Launcher -->
     <uses-permission android:name="android.permission.SET_WALLPAPER"/>
 
     <application
@@ -15,7 +14,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MeuApp">
 
-        <!-- Define MainActivity como um Launcher -->
         <activity android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -43,9 +41,6 @@
 
         <activity android:name=".UserListActivity"
             android:exported="false" />
-
-        <activity android:name=".LauncherInfoActivity"
-            android:exported="true"/>
 
     </application>
 
